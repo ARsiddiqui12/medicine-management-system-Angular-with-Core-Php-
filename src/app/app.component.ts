@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import { FormsModule,FormGroup } from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
@@ -12,26 +12,46 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 })
 export class AppComponent {
   title = 'app';
-  
+  formStatus = false;
 
   constructor(private http: HttpClient){
+
+  }
+
+  onInit()
+  {
+
+  this.formStatus = false;
 
   }
 
   onSubmit(userForm: FormGroup) //Argument Type Must be FormGroup
   {
     
-
-    const headers = new Headers();
-        
-    headers.append('Content-Type', 'application/json');
-
-  	this.http.post("http://localhost:8000/",JSON.stringify(userForm.value),headers).subscribe(
+    let FormData = userForm.value;
+  
+  	this.http.post("http://localhost:8000/api/get/users/create",JSON.stringify(FormData),{headers: new HttpHeaders()}).subscribe(
         res => {
 
-          console.log(res);
+          if(res.code==200)
+          {
+          
+           if (userForm.valid) 
+           {
 
-          userForm.reset();
+            console.log('form submitted');
+    
+            userForm.reset();
+
+            this.formStatus = true;
+
+           }
+
+          }else{
+
+          
+
+          }
 
         },
         err => {

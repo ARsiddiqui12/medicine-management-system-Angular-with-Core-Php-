@@ -1,0 +1,9 @@
+.successmsg{
+	color:green;
+	font-weight: bold;
+	display: block;
+}
+
+.errormsg{
+	display:none;
+}

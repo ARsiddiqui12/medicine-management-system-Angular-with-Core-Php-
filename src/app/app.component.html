@@ -2,6 +2,7 @@
 <div class="row">
 <div class="col-md-4"></div>
 <div class="col-md-4">
+  <div [ngClass]="{successmsg:formStatus,errormsg:!formStatus}">Successfull</div>
   <h1>User Registration</h1>
   <form #register="ngForm" method="post" (submit)="onSubmit(register)" novalidate>
 <div class="form-group">
