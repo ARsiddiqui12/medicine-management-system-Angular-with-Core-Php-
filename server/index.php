@@ -28,10 +28,32 @@ function __autoload($classname) {
 
 		}
 
+		public function login($data)
+		{
+
+			$login = new Login();
+
+			$login->check_login($data);
+
+		}
+
 		public function process($data)
 		{
 
-			$this->users($data);
+			
+
+			switch ($data->component) { //checking component
+				
+				case 'login':
+					$this->login($data);
+					break;
+
+				case 'register':
+					$this->users($data);
+					break;
+				
+			}
+
 
 		}
 

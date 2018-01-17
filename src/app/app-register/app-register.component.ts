@@ -30,8 +30,11 @@ export class AppRegisterComponent implements OnInit {
   {
     
     let FormData = userForm.value;
+
+    let register = Object.assign({component:'register'}, FormData);
+
   
-  	this.http.post("http://localhost:8000/api/get/users/create",JSON.stringify(FormData),{headers: new HttpHeaders()}).subscribe(
+  	this.http.post("http://localhost:8000/",JSON.stringify(register),{headers: new HttpHeaders()}).subscribe(
         data => {
 
          if(data['resp']=="success")

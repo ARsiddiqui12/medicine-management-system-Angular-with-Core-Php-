@@ -9,12 +9,13 @@ import { AppRegisterComponent } from './app-register/app-register.component';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
 import { UserService } from './user.service';
 import { AuthGuard } from './auth.guard';
+import { AppLogoutComponent } from './app-logout/app-logout.component';
 
 const appRoutes: Routes = [
 
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'login',
     pathMatch: 'full'
   },{
      path: 'login',
@@ -29,6 +30,9 @@ const appRoutes: Routes = [
       canActivate:[AuthGuard],
       component:AppDashboardComponent
 
+  },{
+      path:'logout',
+      component:AppLogoutComponent
   }
 
 
@@ -40,7 +44,8 @@ const appRoutes: Routes = [
     AppComponent,
     AppLoginComponent,
     AppRegisterComponent,
-    AppDashboardComponent
+    AppDashboardComponent,
+    AppLogoutComponent
   ],
   imports: [
     BrowserModule,

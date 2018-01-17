@@ -16,12 +16,12 @@ export class AppLoginComponent implements OnInit {
   msgSuccess = true;
   msgError = true;
 
-  constructor(private router:Router, private user:UserService ) { }
+  constructor(private router:Router, private user:UserService, private http:HttpClient ) { }
 
   ngOnInit() {
 
   console.log("login page loaded");
-
+  
   }
 
   onSubmit(formLogin:FormGroup)
@@ -33,24 +33,79 @@ export class AppLoginComponent implements OnInit {
 
     let password = logData.password;
 
-    if(username=="admin" && password=="admin")
+    if(username!="" && password!="")
     {
 
-      formLogin.reset();
+    let access = {
 
-      this.msgError = true;
+      username:username,
+      password:password,
+      component:'login'
 
-      this.msgSuccess = false;
+    };
 
-      this.user.setUserLoggedIn();
+   this.http.post("http://localhost:8000/",JSON.stringify(access),{headers: new HttpHeaders()}).subscribe(
+        data => {
 
-      this.router.navigate(['dashboard']);
+         if(data['resp']=="success")
+         {
+
+
+          localStorage.setItem("userInfo", JSON.stringify(data['data']));
+
+          this.user.setUserLoggedIn();
+
+          this.router.navigate(['dashboard']);
+
+          formLogin.reset();
+
+         }else{
+
+          
+          this.msgError = false;
+
+          formLogin.reset();
+
+         }
+
+        },
+        err => {
+
+          formLogin.reset();
+
+          this.msgError = false;
+
+          console.log("Error occured");
+
+        });
+
 
     }else{
 
       this.msgError = false;
 
     }
+
+
+
+    // if(username=="admin" && password=="admin")
+    // {
+
+    //   formLogin.reset();
+
+    //   this.msgError = true;
+
+    //   this.msgSuccess = false;
+
+    //   this.user.setUserLoggedIn();
+
+    //   this.router.navigate(['dashboard']);
+
+    // }else{
+
+    //   this.msgError = false;
+
+    // }
 
   	
 

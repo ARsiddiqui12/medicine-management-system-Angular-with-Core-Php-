@@ -18,7 +18,20 @@ export class UserService {
 
    getUserLoggedIn()
    {
-   	return this.isUserLoggedIn;
+
+    let Session = localStorage.getItem("userInfo");
+
+    let userData = JSON.parse(Session);
+
+    if(!userData.is_logged_in || userData.is_logged_in==false)
+    {
+      return false;
+    }else{
+      return true;
+    }
+
+
+   	
    }
 
 }

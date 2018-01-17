@@ -9,11 +9,19 @@ import { Router } from '@angular/router';
 })
 export class AppDashboardComponent implements OnInit {
 
+  Session = localStorage.getItem("userInfo");
+
+  SessUser = "";
+
+  isLoggedIn = false;
+
   constructor(private user:UserService, private router:Router) { }
 
   ngOnInit() {
 
-  	console.log("dashboard page loaded");
+  	let userData = JSON.parse(this.Session);
+
+  	this.SessUser = userData.username;
 
   }
 
