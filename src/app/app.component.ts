@@ -10,57 +10,18 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  title = 'app';
-  formStatus = false;
-
-  constructor(private http: HttpClient){
-
-  }
+ 
 
   onInit()
   {
 
-  this.formStatus = false;
+  console.log("App Component load");
 
   }
 
-  onSubmit(userForm: FormGroup) //Argument Type Must be FormGroup
-  {
-    
-    let FormData = userForm.value;
   
-  	this.http.post("http://localhost:8000/api/get/users/create",JSON.stringify(FormData),{headers: new HttpHeaders()}).subscribe(
-        res => {
-
-          if(res.code==200)
-          {
-          
-           if (userForm.valid) 
-           {
-
-            console.log('form submitted');
-    
-            userForm.reset();
-
-            this.formStatus = true;
-
-           }
-
-          }else{
-
-          
-
-          }
-
-        },
-        err => {
-          console.log("Error occured");
-        });
-
-
-
-  }
 
   
 

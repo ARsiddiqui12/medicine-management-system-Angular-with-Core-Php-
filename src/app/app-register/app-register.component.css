@@ -1,0 +1,20 @@
+.successmsg{
+	color:green;
+	font-weight: bold;
+	display: block;
+}
+
+.errormsg{
+	display:none;
+}
+
+
+.successmsg {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+.successmsg {
+  visibility: visible;
+  opacity: 1;
+}

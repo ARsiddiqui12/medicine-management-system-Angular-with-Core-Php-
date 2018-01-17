@@ -33,12 +33,16 @@ public function create($data)
 
   header("HTTP/1.1 200 OK");
 
+  header('content-type:application/json');
+
   echo json_encode(['resp'=>'success','code'=>200]);
 
   }else{
 
   header("Status: 400 bad rquest");
 
+  header('content-type:application/json');
+  
   echo json_encode(['resp'=>'error','code'=>400]);
 
   }
