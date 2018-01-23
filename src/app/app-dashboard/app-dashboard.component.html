@@ -1,2 +1,220 @@
-<h1>Welcome {{SessUser}}</h1>
-<a routerLink="/logout" routerLinkActive="active">Logout</a>
+<app-app-header></app-app-header>
+
+
+
+<div class="row" style="color: black;">
+    <div class="col l12">
+      <div class="card">
+    	
+    	<div class="card-title cyan darken-4">
+    		<img class="materialboxed" style="width:3%;float: left;" src="assets/img/doctor.png">
+    		<span style="position: relative;"> Contacts</span> 
+<button class="btn waves-effect waves-light right" (click)="showModal()" style="padding: 0px 1rem !important; margin: 4px 4px 0px 0px !important;"><i class="small material-icons left">add_box</i> Add New Contact</button>
+    	</div>
+
+        <div class="card-content">
+
+            <div [hidden]="msgSuccess" class="app-error green">
+  
+  <strong>Success!</strong>A new Contact Added Successfully...!
+
+</div>
+
+<div  [hidden]="msgError"  class="app-error red accent-4">
+  
+  <strong>Error!</strong> Something Went Wrong...!
+
+</div>
+
+
+
+
+         <div [hidden]="!FormView">
+            <form #cForm="ngForm" (submit)="onSubmit(cForm)">
+         <div class="row"> 
+        
+         <div class="col l4">
+
+          <input  placeholder="Contact Name" #cNameref="ngModel" required name="cname" type="text" class="deep-purple lighten-5" ngModel>
+          
+        <div *ngIf="cNameref.errors && (cNameref.dirty || cNameref.touched)" class="app-error red accent-4">
+
+        <div [hidden]="!cNameref.errors.required">
+            Contact Name is required...!
+        </div>
+
+        </div>
+        
+        </div>
+
+        <div class="col l4">
+
+            <select name="designation" #DesignationRef="ngModel" required class="browser-default deep-purple lighten-5" ngModel>
+            <option value="" disabled selected>Contact Person Designation</option>
+            <option value="1">MO</option>
+            <option value="2">FMO</option>
+            <option value="3">LHS</option>
+            </select>
+<br>
+        <div *ngIf="DesignationRef.errors && (DesignationRef.dirty || DesignationRef.touched)" class="app-error red accent-4">
+
+        <div [hidden]="!DesignationRef.errors.required">
+            Designation is required...!
+        </div>
+
+        </div>
+
+        </div>
+
+        <div class="col l4">
+
+           <input  placeholder="Email Address" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #emailRef="ngModel" required name="email" type="text" class="deep-purple lighten-5" ngModel>
+
+                   <div *ngIf="emailRef.errors && (emailRef.dirty || emailRef.touched)" class="app-error red accent-4">
+
+        <div [hidden]="!emailRef.errors.required">
+            Email is required...!
+        </div>
+        <div [hidden]="!emailRef.errors.pattern">
+        Email Address Must be in Valid Format.
+    </div>
+
+        </div>
+
+        </div>
+
+        </div>
+
+
+
+
+
+
+        <div class="row"> 
+        
+         <div class="col l4">
+
+          <input  placeholder="Phone Number" pattern="^[0-9]+$" #phoneRef="ngModel" required name="phonenumber" type="text" class="deep-purple lighten-5" ngModel>
+
+          <div *ngIf="phoneRef.errors && (phoneRef.dirty || phoneRef.touched)" class="app-error red accent-4">
+
+        <div [hidden]="!phoneRef.errors.required">
+            Phone Number is required...!
+        </div>
+         <div [hidden]="!phoneRef.errors.pattern">
+       Phone Number Must be in Valid Format.
+    </div>
+
+        </div>
+        
+        </div>
+
+        <div class="col l4">
+
+    
+          <input  placeholder="Mobile Number" pattern="^[0-9]+$" #mobileRef="ngModel" required name="mobilenumber" type="text" class="deep-purple lighten-5" ngModel>
+
+          <div *ngIf="mobileRef.errors && (mobileRef.dirty || mobileRef.touched)" class="app-error red accent-4">
+
+        <div [hidden]="!mobileRef.errors.required">
+            Mobile Number is required...!
+        </div>
+
+         <div [hidden]="!mobileRef.errors.pattern">
+        Mobile Number Must be in Valid Format.
+    </div>
+
+
+        </div>
+
+        </div>
+
+          <div class="col l4">
+
+        
+          <input  placeholder="Address" #addressRef="ngModel" required name="address" type="text" class="deep-purple lighten-5" ngModel>
+            
+              <div *ngIf="addressRef.errors && (addressRef.dirty || addressRef.touched)" class="app-error red accent-4">
+
+        <div [hidden]="!addressRef.errors.required">
+           Address  is required...!
+        </div>
+
+        </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="row"> 
+
+        
+         <div class="col l12">
+
+
+            <button type="submit" [disabled]="!cForm.form.valid" class="waves-effect waves-light btn right">Submit</button>
+
+        </div>
+
+
+    </div>
+
+
+        </form>
+        </div>
+
+        	<table id="contactDoc" class="mdl-data-table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>Edinburgh</td>
+                <td>61</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+            </tr>
+           
+        </tbody>
+    </table>
+
+
+
+ 
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+

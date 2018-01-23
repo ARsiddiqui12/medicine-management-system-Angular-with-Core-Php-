@@ -1,27 +1,37 @@
 <br><br><br>
+
 <div class="row">
-<div class="col-md-4"></div>
-<div class="col-md-4">
 
+<div class="col m4"></div>
 
-<div [hidden]="msgSuccess" class="alert alert-success alert-dismissable">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Success!</strong> You Have Successfully Registered..
-</div>
+<div class="col m4">
 
-<div  [hidden]="msgError"  class="alert alert-warning alert-dismissable">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Error!</strong> Invalid Username or Password...!
-</div>
+<div class="card box  cyan darken-4">
+
 <h1 style="text-align: center;">Login</h1>
 
+<div [hidden]="msgSuccess" class="app-success">
+ 
+  <strong>Success!</strong> You Have Successfully Registered.
+
+</div>
+
+<div  [hidden]="msgError"  class="app-error red accent-4">
+  
+  <strong>Error!</strong> Invalid Username or Password.
+
+</div>
+
 <form #Login="ngForm" (submit)="onSubmit(Login)">
+
+
+
 
 <div class="form-group">
 	<label>Username</label>
 	<input type="text" #usernameRef="ngModel" name="username" required="required" placeholder="Username" class="form-control" ngModel>
 	
-	<div *ngIf="usernameRef.errors && (usernameRef.dirty || usernameRef.touched)" class="alert alert-danger">
+	<div *ngIf="usernameRef.errors && (usernameRef.dirty || usernameRef.touched)" class="app-error red accent-4">
 
 		<div [hidden]="!usernameRef.errors.required">
 			Username is required...!
@@ -35,7 +45,7 @@
 	<label>Password</label>
 	<input type="password" #passwordRef="ngModel" name="password" required="required" placeholder="Password" class="form-control" ngModel>
 	
-	<div *ngIf="passwordRef.errors && (passwordRef.dirty || passwordRef.touched)" class="alert alert-danger">
+	<div *ngIf="passwordRef.errors && (passwordRef.dirty || passwordRef.touched)" class="app-error red accent-4">
 
 		<div [hidden]="!passwordRef.errors.required">
 			Password is required...!
@@ -52,6 +62,21 @@
 </div>
 
 </form>
+
+
+
+
+
+
+
+
+
+
+
+	<br><br>
  <a routerLink="/register" routerLinkActive="active">Create a new Account</a>
 </div>
+
+</div>
+
 </div>

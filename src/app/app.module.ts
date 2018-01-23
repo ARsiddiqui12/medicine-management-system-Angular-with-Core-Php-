@@ -10,6 +10,9 @@ import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
 import { UserService } from './user.service';
 import { AuthGuard } from './auth.guard';
 import { AppLogoutComponent } from './app-logout/app-logout.component';
+import { AppHeaderComponent } from './app-header/app-header.component';
+
+
 
 const appRoutes: Routes = [
 
@@ -45,7 +48,9 @@ const appRoutes: Routes = [
     AppLoginComponent,
     AppRegisterComponent,
     AppDashboardComponent,
-    AppLogoutComponent
+    AppLogoutComponent,
+    AppHeaderComponent,
+   
   ],
   imports: [
     BrowserModule,

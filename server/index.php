@@ -37,6 +37,15 @@ function __autoload($classname) {
 
 		}
 
+		public function add_contact($data)
+		{
+
+			$contact = new Contacts();
+
+			$contact->create($data);
+
+		}
+
 		public function process($data)
 		{
 
@@ -50,6 +59,10 @@ function __autoload($classname) {
 
 				case 'register':
 					$this->users($data);
+					break;
+
+				case 'addcontact':
+					$this->add_contact($data);
 					break;
 				
 			}
