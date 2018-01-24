@@ -35,6 +35,7 @@ export class AppDashboardComponent implements OnInit {
 
   	this.SessUser = userData.username;
 
+
   }
 
   showModal()

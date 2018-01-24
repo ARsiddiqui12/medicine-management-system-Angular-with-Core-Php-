@@ -11,6 +11,7 @@ import { UserService } from './user.service';
 import { AuthGuard } from './auth.guard';
 import { AppLogoutComponent } from './app-logout/app-logout.component';
 import { AppHeaderComponent } from './app-header/app-header.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -56,6 +57,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    DataTablesModule,
      RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
