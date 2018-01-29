@@ -46,6 +46,24 @@ function __autoload($classname) {
 
 		}
 
+		public function view_contact()
+		{
+
+			$contact = new Contacts();
+
+			$contact->view();
+
+		}
+
+		public function edit_contact($data)
+		{
+
+			$contact = new Contacts();
+
+			$contact->edit($data);
+
+		}
+
 		public function process($data)
 		{
 
@@ -63,6 +81,14 @@ function __autoload($classname) {
 
 				case 'addcontact':
 					$this->add_contact($data);
+					break;
+
+				case 'contactlist':
+					$this->view_contact();
+					break;
+
+				case 'retrievedata':
+					$this->edit_contact($data);
 					break;
 				
 			}

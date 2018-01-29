@@ -34,8 +34,8 @@
          <div class="row"> 
         
          <div class="col l4">
-
-          <input  placeholder="Contact Name" #cNameref="ngModel" required name="cname" type="text" class="deep-purple lighten-5" ngModel>
+          <input type="hidden" name="cid" value="0" [ngModel]="cID">
+          <input  placeholder="Contact Name" #cNameref="ngModel" required name="cname" type="text" class="deep-purple lighten-5" [ngModel]="cName">
           
         <div *ngIf="cNameref.errors && (cNameref.dirty || cNameref.touched)" class="app-error red accent-4">
 
@@ -49,11 +49,11 @@
 
         <div class="col l4">
 
-            <select name="designation" #DesignationRef="ngModel" required class="browser-default deep-purple lighten-5" ngModel>
-            <option value="" disabled selected>Contact Person Designation</option>
-            <option value="1">MO</option>
+            <select name="designation" #DesignationRef="ngModel" required class="browser-default deep-purple lighten-5" [ngModel]="cDesignation">
+            <option *ngFor="let list of dlist" [value]="list.key">{{list.value}}</option>
+           <!--  <option value="1">MO</option>
             <option value="2">FMO</option>
-            <option value="3">LHS</option>
+            <option value="3">LHS</option> -->
             </select>
 <br>
         <div *ngIf="DesignationRef.errors && (DesignationRef.dirty || DesignationRef.touched)" class="app-error red accent-4">
@@ -68,7 +68,7 @@
 
         <div class="col l4">
 
-           <input  placeholder="Email Address" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #emailRef="ngModel" required name="email" type="text" class="deep-purple lighten-5" ngModel>
+           <input  placeholder="Email Address" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #emailRef="ngModel" required name="email" type="text" class="deep-purple lighten-5" [ngModel]="cEmail">
 
                    <div *ngIf="emailRef.errors && (emailRef.dirty || emailRef.touched)" class="app-error red accent-4">
 
@@ -94,7 +94,7 @@
         
          <div class="col l4">
 
-          <input  placeholder="Phone Number" pattern="^[0-9]+$" #phoneRef="ngModel" required name="phonenumber" type="text" class="deep-purple lighten-5" ngModel>
+          <input  placeholder="Phone Number" pattern="^[0-9]+$" #phoneRef="ngModel" required name="phonenumber" type="text" class="deep-purple lighten-5" [ngModel]="cPhone">
 
           <div *ngIf="phoneRef.errors && (phoneRef.dirty || phoneRef.touched)" class="app-error red accent-4">
 
@@ -112,7 +112,7 @@
         <div class="col l4">
 
     
-          <input  placeholder="Mobile Number" pattern="^[0-9]+$" #mobileRef="ngModel" required name="mobilenumber" type="text" class="deep-purple lighten-5" ngModel>
+          <input  placeholder="Mobile Number" pattern="^[0-9]+$" #mobileRef="ngModel" required name="mobilenumber" type="text" class="deep-purple lighten-5" [ngModel]="cMobile">
 
           <div *ngIf="mobileRef.errors && (mobileRef.dirty || mobileRef.touched)" class="app-error red accent-4">
 
@@ -132,7 +132,7 @@
           <div class="col l4">
 
         
-          <input  placeholder="Address" #addressRef="ngModel" required name="address" type="text" class="deep-purple lighten-5" ngModel>
+          <input  placeholder="Address" #addressRef="ngModel" required name="address" type="text" class="deep-purple lighten-5" [ngModel]="cAddress">
             
               <div *ngIf="addressRef.errors && (addressRef.dirty || addressRef.touched)" class="app-error red accent-4">
 
@@ -168,31 +168,34 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Designation</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Designation</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Action</th>
             </tr>
         </tfoot>
         <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
+            <tr *ngFor="let contact of tableData">
+                <td>{{contact.name}}</td>
+                <td>{{contact.desg}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.phone}}</td>
+                <td>{{contact.mobile}}</td>
+                <td>{{contact.address}}</td>
+                <th><button class="btn btn-info" (click)="onEdit(contact.id)">Edit</button></th>
             </tr>
            
         </tbody>
